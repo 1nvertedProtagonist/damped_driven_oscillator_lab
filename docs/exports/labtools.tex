@@ -1,0 +1,482 @@
+
+\documentclass{article}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+
+
+
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+\begin{document}
+
+\section*{}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}\PYZsh{}DISCLAIMER: }
+\PY{c+c1}{\PYZsh{}this whole file was built to analyze individual data points in the same }
+\PY{c+c1}{\PYZsh{}run/trial organized by column. Meaning of there were 100 measurements and 3 }
+\PY{c+c1}{\PYZsh{}runs that there would be 3 columns and 100 rows, a (100,3) numpy array. }
+\PY{c+c1}{\PYZsh{}is that is not the case for the data that you wish to use this library upon, }
+\PY{c+c1}{\PYZsh{}(for 3 runs of 100 measurements each you have 3 rows and 100}
+\PY{c+c1}{\PYZsh{} columns, a (3,100) numpy array))simply np.transpose(your\PYZus{}data) and the rest }
+\PY{c+c1}{\PYZsh{} should be fine}
+
+\PY{c+c1}{\PYZsh{}this tool was designed to save you a lot of time and suffering when }
+\PY{c+c1}{\PYZsh{}conducting data analysis in python, i hope it helps}
+
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np} 
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{plt}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{typing}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{Optional}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{chi2} \PY{k}{as} \PY{n}{chi2dist}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{dataclasses}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{dataclass}
+
+
+\PY{n+nd}{@dataclass}
+\PY{k}{class}\PY{+w}{ }\PY{n+nc}{FitResult}\PY{p}{:}
+  \PY{n}{model}\PY{p}{:} \PY{n+nb}{str}
+  \PY{n}{params}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}
+  \PY{n}{params\PYZus{}errs}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}
+  \PY{n}{covar}\PY{p}{:} \PY{n}{Optional} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{ndarray}\PY{p}{]}
+  \PY{n}{chi2}\PY{p}{:} \PY{n+nb}{float} 
+  \PY{n}{dof}\PY{p}{:} \PY{n+nb}{int}
+  \PY{n}{red\PYZus{}chi2}\PY{p}{:} \PY{n+nb}{float}
+  \PY{n}{pvalue}\PY{p}{:} \PY{n+nb}{float} 
+  \PY{n}{yhat}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}
+  \PY{n}{R2}\PY{p}{:} \PY{n}{Optional} \PY{p}{[}\PY{n+nb}{float}\PY{p}{]}
+  \PY{n}{residuals}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{ndarray}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{num\PYZus{}sigfigs}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}returns number of sig figs to report on errors}
+  \PY{c+c1}{\PYZsh{}pass in a 1D array}
+  \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{data} \PY{o}{==} \PY{p}{(}\PY{k+kc}{None} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+     \PY{k}{raise} \PY{n+ne}{ValueError} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A value of None or nan was encountered}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{errinerr} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}
+  \PY{k}{if} \PY{n}{errinerr} \PY{o}{\PYZlt{}} \PY{l+m+mf}{0.005}\PY{p}{:} 
+    \PY{k}{return} \PY{l+m+mi}{3}
+  \PY{k}{elif} \PY{n}{errinerr} \PY{o}{\PYZlt{}} \PY{l+m+mf}{0.03}\PY{p}{:}
+    \PY{k}{return} \PY{l+m+mi}{2}
+  \PY{k}{else}\PY{p}{:} 
+    \PY{k}{return} \PY{l+m+mi}{1} 
+
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{SEM}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+    \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}
+
+    \PY{n}{n} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{n}{axis}\PY{p}{]}
+    \PY{k}{if} \PY{n}{n} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{ddof}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{ValueError} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Not enough data points to compute SEM}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{n}{axis}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{n}{ddof}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{SEM\PYZus{}as\PYZus{}we\PYZus{}go}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}this tools calculates the total SEM as }
+  \PY{c+c1}{\PYZsh{}after m data points out of the total n data points}
+  \PY{c+c1}{\PYZsh{}the goal is to see after how many data points collected has the SEM}
+  \PY{c+c1}{\PYZsh{}for the trial stabilized or low enough to justify the number of data }
+  \PY{c+c1}{\PYZsh{}necessary to collect. again pass in a 1D}
+  \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{data} \PY{o}{==} \PY{p}{(}\PY{k+kc}{None} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+     \PY{k}{raise} \PY{n+ne}{ValueError} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A value of None or nan was encountered}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}
+  \PY{n}{n} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{data}\PY{o}{.}\PY{n}{size}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+  \PY{n}{S1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+  \PY{n}{S2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{n}{data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} 
+  \PY{n}{means} \PY{o}{=} \PY{n}{S1} \PY{o}{/} \PY{n}{n}
+  \PY{n}{var\PYZus{}pop} \PY{o}{=} \PY{p}{(}\PY{n}{S2}\PY{o}{/}\PY{n}{n}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{means}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} 
+  \PY{n}{var} \PY{o}{=} \PY{n}{var\PYZus{}pop} \PY{o}{*} \PY{n}{n} \PY{o}{/} \PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{ddof}\PY{p}{)}
+  \PY{n}{sem} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{var}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+  \PY{k}{return} \PY{n}{n}\PY{p}{,} \PY{n}{sem}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{num\PYZus{}of\PYZus{}trials\PYZus{}visual}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{} Just a visualization of the previous idea }
+  \PY{c+c1}{\PYZsh{}into a function}
+  \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{data} \PY{o}{==} \PY{p}{(}\PY{k+kc}{None} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+     \PY{k}{raise} \PY{n+ne}{ValueError} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A value of None or nan was encountered}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Measurements}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SEM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SEM as a Function of Number of Measurements}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+  \PY{n}{SEM\PYZus{}trial} \PY{o}{=} \PY{n}{SEM}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+  \PY{n}{mean\PYZus{}trial} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+  \PY{n}{legend} \PY{o}{=} \PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{the SEM for this trial is }\PY{l+s+si}{\PYZob{}}\PY{n}{SEM\PYZus{}trial}\PY{l+s+si}{:}\PY{l+s+s2}{.1e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ and the mean is}\PY{l+s+s2}{\PYZdq{}}\PYZbs{}
+            \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+si}{\PYZob{}}\PY{n}{mean\PYZus{}trial}\PY{l+s+si}{:}\PY{l+s+s2}{.8e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}  
+  \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{SEM\PYZus{}as\PYZus{}we\PYZus{}go}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{SEM\PYZus{}as\PYZus{}we\PYZus{}go}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{label} \PY{o}{=} \PY{n}{legend}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+  \PY{k}{return} \PY{k+kc}{None}
+
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{weighted\PYZus{}mean}\PY{p}{(}\PY{n}{vals}\PY{p}{,}\PY{n}{errs}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}pass in two 1D arrays. (first one is values,}
+  \PY{c+c1}{\PYZsh{}second one is their respective uncertainties)}
+  \PY{c+c1}{\PYZsh{}calculates the weighted mean}
+  \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{vals} \PY{o}{==} \PY{p}{(}\PY{k+kc}{None} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+     \PY{k}{raise} \PY{n+ne}{ValueError} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A value of None or nan was encountered}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{k}{if} \PY{n}{vals}\PY{o}{.}\PY{n}{shape} \PY{o}{!=} \PY{n}{errs}\PY{o}{.}\PY{n}{shape}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{ValueError}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{shape mismatch: vals}\PY{l+s+si}{\PYZob{}}\PY{n}{vals}\PY{o}{.}\PY{n}{shape}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ vs errs}\PY{l+s+si}{\PYZob{}}\PY{n}{errs}\PY{o}{.}\PY{n}{shape}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{k}{if} \PY{n}{vals}\PY{o}{.}\PY{n}{size} \PY{o}{!=} \PY{n}{errs}\PY{o}{.}\PY{n}{size}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{ValueError}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{size mismatch: vals}\PY{l+s+si}{\PYZob{}}\PY{n}{vals}\PY{o}{.}\PY{n}{size}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ vs errs}\PY{l+s+si}{\PYZob{}}\PY{n}{errs}\PY{o}{.}\PY{n}{size}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{vals}\PY{p}{)}
+  \PY{n}{errs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{errs}\PY{p}{)}
+  \PY{n}{weights} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{errs}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+  \PY{n}{wmean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{vals}\PY{o}{*}\PY{n}{weights}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{weights}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0} \PY{p}{)}
+  \PY{n}{CEsqu} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{weights}\PY{p}{,} \PY{n}{axis}  \PY{o}{=} \PY{l+m+mi}{0} \PY{p}{)}
+  \PY{k}{return} \PY{p}{(}\PY{n}{wmean}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{CEsqu}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{find\PYZus{}plottabl\PYZus{}stuff}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{errs}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+    \PY{n}{vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Case 1: no errs provided OR errs is an array full of None}
+    \PY{k}{if} \PY{n}{errs} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{:}
+        \PY{n}{n\PYZus{}meas} \PY{o}{=} \PY{n}{vals}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{if} \PY{n}{vals}\PY{o}{.}\PY{n}{ndim} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1} \PY{k}{else} \PY{n}{vals}\PY{o}{.}\PY{n}{size}
+        \PY{n}{mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{k}{if} \PY{n}{vals}\PY{o}{.}\PY{n}{ndim} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{k}{else} \PY{n+nb}{float}\PY{p}{(}\PY{n}{vals}\PY{p}{)}
+
+        \PY{k}{if} \PY{n}{n\PYZus{}meas} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2}\PY{p}{:}
+            \PY{k}{return} \PY{n}{mean}\PY{p}{,} \PY{k+kc}{None}   \PY{c+c1}{\PYZsh{} don\PYZsq{}t find SEM}
+        \PY{k}{return} \PY{n}{mean}\PY{p}{,} \PY{n}{SEM}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+
+    \PY{n}{errs\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{errs}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{object}\PY{p}{)}
+    \PY{k}{if} \PY{n}{errs\PYZus{}arr}\PY{o}{.}\PY{n}{dtype} \PY{o}{==} \PY{n+nb}{object} \PY{o+ow}{and} \PY{n}{np}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{n}{errs\PYZus{}arr} \PY{o}{==} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+        \PY{n}{n\PYZus{}meas} \PY{o}{=} \PY{n}{vals}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{k}{if} \PY{n}{n\PYZus{}meas} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2}\PY{p}{:}
+            \PY{k}{return} \PY{n}{mean}\PY{p}{,} \PY{k+kc}{None} \PY{c+c1}{\PYZsh{} again no SEM if not enough points}
+        \PY{k}{return} \PY{n}{mean}\PY{p}{,} \PY{n}{SEM}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Case 2: errs provided \PYZhy{}\PYZgt{} weighted mean}
+    \PY{n}{plottable\PYZus{}vals}\PY{p}{,} \PY{n}{plottable\PYZus{}uncs} \PY{o}{=} \PY{n}{weighted\PYZus{}mean}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{errs}\PY{p}{)}
+    \PY{k}{return} \PY{n}{plottable\PYZus{}vals}\PY{p}{,} \PY{n}{plottable\PYZus{}uncs}
+
+
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{uncer\PYZus{}compare}\PY{p}{(}\PY{n}{array1}\PY{p}{,} \PY{n}{array2}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}measuring the experimental staistical }
+  \PY{c+c1}{\PYZsh{}uncertainties vs the uncertainty on the instrument or whatever other base }
+  \PY{c+c1}{\PYZsh{} uncertainty there is. reports dominant one}
+    \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{array1} \PY{o}{==} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:} 
+       \PY{k}{return} \PY{n}{array2}
+    \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{array2} \PY{o}{==} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:} 
+       \PY{k}{return} \PY{n}{array1}
+    \PY{n}{newuncs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{array1}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{n}{array2}\PY{p}{,}\PY{n}{array1}\PY{p}{,}\PY{n}{array2}\PY{p}{)}
+    \PY{k}{return} \PY{n}{newuncs}
+
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{linear\PYZus{}fitter}\PY{p}{(}\PY{n}{xvals}\PY{p}{,} \PY{n}{yvals}\PY{p}{,}\PY{n}{yerrs}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}The finder for linear fit models}
+  \PY{k}{def}\PY{+w}{ }\PY{n+nf}{linear\PYZus{}model}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{m}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{:}   
+   \PY{k}{return} \PY{n}{m}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{b}
+  \PY{n}{params}\PY{p}{,} \PY{n}{covar\PYZus{}mat} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{linear\PYZus{}model}\PY{p}{,}\PY{n}{xvals}\PY{p}{,}\PY{n}{yvals}\PY{p}{,}\PY{n}{sigma}\PY{o}{=}\PY{n}{yerrs}\PY{p}{,}
+                                \PY{n}{absolute\PYZus{}sigma}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+  \PY{n}{m}\PY{p}{,}\PY{n}{b} \PY{o}{=} \PY{n}{params}
+  \PY{n}{errors} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{covar\PYZus{}mat}\PY{p}{)}\PY{p}{)}
+  \PY{n}{m\PYZus{}err}\PY{p}{,}\PY{n}{b\PYZus{}err} \PY{o}{=} \PY{n}{errors}
+  \PY{n}{yhat} \PY{o}{=}\PY{n}{linear\PYZus{}model}\PY{p}{(}\PY{n}{xvals}\PY{p}{,}\PY{n}{m}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+
+  \PY{n}{residuals} \PY{o}{=} \PY{n}{yvals} \PY{o}{\PYZhy{}} \PY{n}{yhat}
+  \PY{n}{dof} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{xvals}\PY{o}{.}\PY{n}{size} \PY{o}{\PYZhy{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{params}\PY{p}{)}\PY{p}{)} 
+  \PY{k}{if} \PY{n}{yerrs} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{:} 
+    \PY{n}{fakechi2} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{residuals}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+    \PY{n}{fakeredchi2} \PY{o}{=} \PY{n}{fakechi2}\PY{o}{/}\PY{n}{dof} \PY{k}{if} \PY{n}{dof} \PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{k}{else} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+    \PY{n}{pvalue} \PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{nan}
+    \PY{n}{model} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{linear fit}\PY{l+s+s2}{\PYZdq{}}
+    \PY{n}{R2} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{yvals} \PY{o}{\PYZhy{}} \PY{n}{yhat}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{yvals} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{yvals}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+    \PY{k}{return} \PY{n}{FitResult}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{params}\PY{p}{,}\PY{n}{errors}\PY{p}{,}\PY{k+kc}{None}\PY{p}{,}\PY{n}{fakechi2}\PY{p}{,}\PY{n}{dof}\PY{p}{,}\PY{n}{fakeredchi2}\PY{p}{,}\PY{n}{pvalue}\PY{p}{,}
+                     \PY{n}{yhat}\PY{p}{,}\PY{n}{R2}\PY{p}{,}\PY{n}{residuals}\PY{p}{)}
+  \PY{n}{chi2} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{residuals}\PY{o}{/}\PY{n}{yerrs}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+  \PY{n}{redchi2} \PY{o}{=} \PY{n}{chi2}\PY{o}{/}\PY{n}{dof}
+  \PY{n}{pvalue} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{chi2dist}\PY{o}{.}\PY{n}{sf}\PY{p}{(}\PY{n}{chi2}\PY{p}{,}\PY{n}{dof}\PY{p}{)}\PY{p}{)} \PY{k}{if} \PY{n}{dof}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{k}{else} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+  \PY{n}{covar} \PY{o}{=} \PY{n}{covar\PYZus{}mat}
+  \PY{n}{model} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{linear fit}\PY{l+s+s2}{\PYZdq{}}
+  \PY{n}{R2} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{yvals} \PY{o}{\PYZhy{}} \PY{n}{yhat}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{yvals} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{yvals}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+  \PY{k}{return} \PY{n}{FitResult}\PY{p}{(}\PY{n}{model}\PY{p}{,}\PY{n}{params}\PY{p}{,}\PY{n}{errors}\PY{p}{,}\PY{n}{covar}\PY{p}{,} \PY{n}{chi2}\PY{p}{,}\PY{n}{dof}\PY{p}{,} \PY{n}{redchi2}\PY{p}{,}\PY{n}{pvalue}\PY{p}{,}\PY{n}{yhat}\PY{p}{,}
+                   \PY{n}{R2}\PY{p}{,} \PY{n}{residuals}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{run\PYZus{}stackera0}\PY{p}{(}\PY{n}{runs}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}Input in a python list of all your runs, what this }
+   \PY{c+c1}{\PYZsh{}function does it that it output two arrays that you can automatically put }
+   \PY{c+c1}{\PYZsh{} into the weighted mean function}
+   \PY{c+c1}{\PYZsh{} So when you have many runs, you don\PYZsq{}t have to manually take means and }
+   \PY{c+c1}{\PYZsh{} SEMS important that }
+   \PY{c+c1}{\PYZsh{} you don\PYZsq{}t pass in yerrs, for that use find\PYZus{}plottable\PYZus{}stuff}
+   \PY{c+c1}{\PYZsh{}WORKS ALONG AXIS=0}
+  \PY{n}{means}  \PY{o}{=} \PY{p}{[}\PY{p}{]}
+  \PY{n}{SEMS} \PY{o}{=} \PY{p}{[}\PY{p}{]} 
+  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{runs}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+     \PY{n}{mean}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{runs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+     \PY{n}{errs} \PY{o}{=} \PY{n}{SEM}\PY{p}{(}\PY{n}{runs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+     \PY{n}{means}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mean}\PY{p}{)}
+     \PY{n}{SEMS}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{errs}\PY{p}{)}
+  \PY{n}{vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{means}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} 
+  \PY{n}{uncs}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{SEMS}\PY{p}{,}\PY{n}{axis} \PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+  \PY{k}{return} \PY{p}{(}\PY{n}{vals}\PY{p}{,}\PY{n}{uncs}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{run\PYZus{}stackera1}\PY{p}{(}\PY{n}{runs}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}Input in a python list of all your runs, what this }
+   \PY{c+c1}{\PYZsh{}function does it that it output two arrays that you can automatically put }
+   \PY{c+c1}{\PYZsh{} into the weighted mean function}
+   \PY{c+c1}{\PYZsh{} So when you have many runs, you don\PYZsq{}t have to manually take means and }
+   \PY{c+c1}{\PYZsh{} SEMS important that}
+   \PY{c+c1}{\PYZsh{} you don\PYZsq{}t pass in yerrs, for that use find\PYZus{}plottable\PYZus{}stuff}
+   \PY{c+c1}{\PYZsh{}WORKS ALONG AXIS=1}
+  \PY{n}{means}  \PY{o}{=} \PY{p}{[}\PY{p}{]}
+  \PY{n}{SEMS} \PY{o}{=} \PY{p}{[}\PY{p}{]} 
+  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{runs}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+     \PY{n}{mean}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{runs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+     \PY{n}{errs} \PY{o}{=} \PY{n}{SEM}\PY{p}{(}\PY{n}{runs}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+     \PY{n}{means}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mean}\PY{p}{)}
+     \PY{n}{SEMS}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{errs}\PY{p}{)}
+  \PY{n}{vals} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{means}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} 
+  \PY{n}{uncs}  \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{n}{SEMS}\PY{p}{,}\PY{n}{axis} \PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+  \PY{k}{return} \PY{p}{(}\PY{n}{vals}\PY{p}{,}\PY{n}{uncs}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{plot\PYZus{}shower}\PY{p}{(}\PY{n}{xvalues}\PY{p}{,}\PY{n}{yvalues}\PY{p}{,}\PY{n}{plot}\PY{p}{,}\PY{n}{xerr} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,}\PY{n}{yerr}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,}\PY{n}{xticks}\PY{o}{=} \PY{k+kc}{None}\PY{p}{,}
+                \PY{n}{yticks} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:} 
+  \PY{c+c1}{\PYZsh{}Important, the class of plot must be a FitResult, so that}
+  \PY{c+c1}{\PYZsh{}info can be extracted quickly.}
+  \PY{k}{if} \PY{p}{(}\PY{n}{plot}\PY{o}{.}\PY{n}{model} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{linear fit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:} 
+      \PY{n}{fit\PYZus{}y} \PY{o}{=} \PY{n}{plot}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{xvalues} \PY{o}{+} \PY{n}{plot}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+      \PY{n}{leg\PYZus{}des} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best fit curve: }\PY{l+s+si}{\PYZob{}}\PY{n}{plot}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{x + }\PY{l+s+si}{\PYZob{}}\PY{n}{plot}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, R2 = }\PY{l+s+si}{\PYZob{}}\PY{n}{plot}\PY{o}{.}\PY{n}{R2}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}
+    
+  \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{xvalues}\PY{p}{,}\PY{n}{yvalues}\PY{p}{,}\PY{n}{yerr} \PY{o}{=}\PY{n}{yerr}\PY{p}{,}\PY{n}{xerr}\PY{o}{=}\PY{n}{xerr}\PY{p}{,}\PY{n}{fmt} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xvalues}\PY{p}{,}\PY{n}{fit\PYZus{}y}\PY{p}{,}\PY{n}{label} \PY{o}{=} \PY{n}{leg\PYZus{}des}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{xvalues}\PY{p}{,}\PY{n}{xticks}\PY{p}{,}\PY{n}{rotation} \PY{o}{=}\PY{l+m+mi}{45}\PY{p}{,} \PY{n}{ha}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{right}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{yvalues}\PY{p}{,}\PY{n}{yticks}\PY{p}{,}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{minorticks\PYZus{}on}\PY{p}{(}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,}\PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{which} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{both}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{xlabel} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter x axis name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{ylabel} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter y axis name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{title} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter title name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{c+c1}{\PYZsh{}xlim=(float(input(\PYZdq{}Enter lowest x bound\PYZdq{})),float(input(\PYZdq{}Enter highest x bound\PYZdq{})))}
+  \PY{c+c1}{\PYZsh{}ylim=(float(input(\PYZdq{}Enter lowest y bound\PYZdq{})),float(input(\PYZdq{}Enter highest y bound\PYZdq{})))}
+  \PY{c+c1}{\PYZsh{}plt.xlim(xlim)}
+  \PY{c+c1}{\PYZsh{}plt.ylim(ylim)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{n}{xlabel}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{n}{ylabel}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{both}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{major}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{length}\PY{o}{=}\PY{l+m+mi}{8}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mf}{1.5}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{both}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{minor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{length}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mf}{1.0}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+
+  \PY{c+c1}{\PYZsh{}\PYZsh{}Time for residuals plot and their info}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{xvalues}\PY{p}{,}\PY{n}{plot}\PY{o}{.}\PY{n}{residuals}\PY{p}{,}\PY{n}{yerr}\PY{o}{=} \PY{n}{yerr}\PY{p}{,} \PY{n}{xerr} \PY{o}{=}\PY{n}{xerr}\PY{p}{,} \PY{n}{fmt} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+  \PY{n}{leg\PYZus{}text} \PY{o}{=} \PY{l+s+sa}{rf}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{red\PYZus{}chi\PYZca{}2 = }\PY{l+s+si}{\PYZob{}}\PY{n}{plot}\PY{o}{.}\PY{n}{red\PYZus{}chi2}\PY{l+s+si}{:}\PY{l+s+s2}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, pvalue = }\PY{l+s+si}{\PYZob{}}\PY{n}{plot}\PY{o}{.}\PY{n}{pvalue}\PY{l+s+si}{:}\PY{l+s+s2}{.2e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}   
+  \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dof = }\PY{l+s+si}{\PYZob{}}\PY{n}{plot}\PY{o}{.}\PY{n}{dof}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{1.2}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{xvalues}\PY{p}{,}\PY{n}{xticks}\PY{p}{,}\PY{n}{rotation} \PY{o}{=}\PY{l+m+mi}{45}\PY{p}{,} \PY{n}{ha}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{right}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{minorticks\PYZus{}on}\PY{p}{(}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,}\PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{which} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{both}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{n}{leg\PYZus{}text}\PY{p}{)}
+  \PY{n}{xlabres} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter x axis title of residual plot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{ylabres} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter y axis title of residual plot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{n}{xlabres}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Plot of Residuals for Each Point}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{n}{ylabres}\PY{p}{)}
+  \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{multiple4\PYZus{}plot\PYZus{}shower}\PY{p}{(}\PY{n}{xvalues1}\PY{p}{,}\PY{n}{xvalues2}\PY{p}{,}\PY{n}{yvalues1}\PY{p}{,}\PY{n}{plot1}\PY{p}{,}\PY{n}{yvalues2}\PY{p}{,}\PY{n}{plot2}\PY{p}{,}
+                            \PY{n}{xvalues3} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{xvalues4} \PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{yvalues3}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,}
+                            \PY{n}{plot3} \PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{yvalues4} \PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{plot4} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,}
+                            \PY{n}{xerr1}\PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{xerr2} \PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{xerr3} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} 
+                            \PY{n}{xerr4} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{xticks1}\PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{xticks2}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} 
+                            \PY{n}{xticks3} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{xticks4} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{yticks1} \PY{o}{=}\PY{k+kc}{None}\PY{p}{,}
+                            \PY{n}{yticks2} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{yticks3} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} \PY{n}{yticks4} \PY{o}{=} \PY{k+kc}{None}\PY{p}{,} 
+                            \PY{n}{yerr1}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{yerr2}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{yerr3}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{yerr4}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:} 
+  \PY{c+c1}{\PYZsh{} all plot arguments must be of class FitResult, and yeah, just plotting }
+  \PY{c+c1}{\PYZsh{}multiple graphs.  }
+    \PY{n}{plots} \PY{o}{=} \PY{p}{[}\PY{n}{plot1}\PY{p}{,}\PY{n}{plot2}\PY{p}{,}\PY{n}{plot3}\PY{p}{,}\PY{n}{plot4}\PY{p}{]}
+    \PY{n}{xvaluesS} \PY{o}{=} \PY{p}{[}\PY{n}{xvalues1}\PY{p}{,}\PY{n}{xvalues2}\PY{p}{,}\PY{n}{xvalues3}\PY{p}{,}\PY{n}{xvalues4}\PY{p}{]}
+    \PY{n}{yvaluesS} \PY{o}{=} \PY{p}{[}\PY{n}{yvalues1}\PY{p}{,}\PY{n}{yvalues2}\PY{p}{,}\PY{n}{yvalues3}\PY{p}{,}\PY{n}{yvalues4}\PY{p}{]}
+    \PY{n}{xerrS} \PY{o}{=} \PY{p}{[}\PY{n}{xerr1}\PY{p}{,}\PY{n}{xerr2}\PY{p}{,}\PY{n}{xerr3}\PY{p}{,}\PY{n}{xerr4}\PY{p}{]}
+    \PY{n}{xticksS} \PY{o}{=} \PY{p}{[}\PY{n}{xticks1}\PY{p}{,}\PY{n}{xticks2}\PY{p}{,}\PY{n}{xticks3}\PY{p}{,}\PY{n}{xticks4}\PY{p}{]}
+    \PY{n}{yticksS} \PY{o}{=} \PY{p}{[}\PY{n}{yticks1}\PY{p}{,}\PY{n}{yticks2}\PY{p}{,}\PY{n}{yticks3}\PY{p}{,}\PY{n}{yticks4}\PY{p}{]}
+    \PY{n}{yerrS} \PY{o}{=} \PY{p}{[}\PY{n}{yerr1}\PY{p}{,}\PY{n}{yerr2}\PY{p}{,}\PY{n}{yerr3}\PY{p}{,}\PY{n}{yerr4}\PY{p}{]}
+    \PY{k}{while} \PY{n}{plots}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{k+kc}{None}\PY{p}{)} \PY{o}{!=}\PY{l+m+mi}{0}\PY{p}{:} 
+      \PY{n}{plots} \PY{o}{=} \PY{n}{plots}\PY{p}{[}\PY{p}{:}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{plots}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+      \PY{n}{xvaluesS} \PY{o}{=} \PY{n}{xvaluesS}\PY{p}{[}\PY{p}{:}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{xvaluesS}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+      \PY{n}{yvaluesS} \PY{o}{=} \PY{n}{yvaluesS}\PY{p}{[}\PY{p}{:}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{yvaluesS}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+      \PY{n}{xerrS} \PY{o}{=} \PY{n}{xerrS}\PY{p}{[}\PY{p}{:}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{xerrS}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+      \PY{n}{xticksS} \PY{o}{=} \PY{n}{xticksS}\PY{p}{[}\PY{p}{:}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{xticksS}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+      \PY{n}{yticksS} \PY{o}{=} \PY{n}{yticksS}\PY{p}{[}\PY{p}{:}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{xticksS}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+      \PY{n}{yerrS} \PY{o}{=} \PY{n}{yerrS}\PY{p}{[}\PY{p}{:}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{yerrS}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+      \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{plots}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{:} 
+         \PY{k}{raise} \PY{n+ne}{ValueError} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{FitResult object count went to 0, something must have}\PY{l+s+s2}{\PYZdq{}}
+         \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{been passed in wrong}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+  \PY{c+c1}{\PYZsh{}plot main plot, }
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{plots}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+      \PY{k}{if} \PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{model} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{linear fit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} 
+        \PY{n}{fit} \PY{o}{=} \PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{xvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{leg\PYZus{}des} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Enter any info about plot }\PY{l+s+si}{\PYZob{}}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, this will go in legend}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best fit curve}\PY{l+s+si}{\PYZob{}}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: }\PY{l+s+si}{\PYZob{}}\PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{x +}\PY{l+s+s2}{\PYZdq{}} 
+        \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{xvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{yvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{yerr} \PY{o}{=}\PY{n}{yerrS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{xerr}\PY{o}{=}\PY{n}{xerrS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{fmt} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+                     \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{fit}\PY{p}{,}\PY{n}{label} \PY{o}{=} \PY{n}{leg\PYZus{}des}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{xvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{xticksS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{rotation} \PY{o}{=}\PY{l+m+mi}{45}\PY{p}{,} \PY{n}{ha}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{right}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{if} \PY{o+ow}{not} \PY{p}{(}\PY{n}{yticksS}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{k+kc}{None}\PY{p}{)} \PY{o}{!=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{yvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{yticksS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{minorticks\PYZus{}on}\PY{p}{(}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,}\PY{n}{which}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{both}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{xlabel} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter x axis name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{ylabel} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter y axis name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{title} \PY{o}{=}  \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter title of plot name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{n}{xlabel}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{n}{ylabel}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{both}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{major}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{length}\PY{o}{=}\PY{l+m+mi}{8}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mf}{1.5}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{both}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{minor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{length}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mf}{1.0}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+  \PY{c+c1}{\PYZsh{}plot residual stuff now}
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{plots}\PY{p}{)}\PY{p}{)}\PY{p}{:} 
+      \PY{n}{leg\PYZus{}text} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter any info about plot }\PY{l+s+si}{\PYZob{}}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, this will go in legend}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+      \PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{xvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{residuals}\PY{p}{,} \PY{n}{yerr} \PY{o}{=} \PY{n}{yerrS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{xerr}\PY{o}{=}\PY{n}{xerrS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}
+                   \PY{n}{label} \PY{o}{=} \PY{n}{leg\PYZus{}text}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+      \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{rf}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{red\PYZus{}chi\PYZca{}2 = }\PY{l+s+si}{\PYZob{}}\PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{red\PYZus{}chi2}\PY{l+s+si}{:}\PY{l+s+s2}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, pvalue = }\PY{l+s+si}{\PYZob{}}\PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{pvalue}\PY{l+s+si}{:}\PY{l+s+s2}{.2e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}
+      \PY{l+s+sa}{rf}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dof = }\PY{l+s+si}{\PYZob{}}\PY{n}{plots}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{dof}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} 
+      \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{xvaluesS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{xticksS}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{rotation} \PY{o}{=} \PY{l+m+mi}{45}\PY{p}{,} \PY{n}{ha} \PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{right}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{best}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{linestyle} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{1.2}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
+    \PY{n}{xlabelres} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter x axis title of residual plot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{ylabelres} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter y axis title of resudual plot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{n}{xlabelres}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{n}{ylabelres}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Residuals for each point}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{}\PYZsh{} phase matcher function. pass in two arrays of maybe different length}
+\PY{c+c1}{\PYZsh{}\PYZsh{} it will make them equal length by removing elements out of relative tolerance}
+\PY{c+c1}{\PYZsh{}\PYZsh{} between values of the two arrays. like the \PYZdq{}neighboring\PYZdq{} ones will be kept,}
+\PY{c+c1}{\PYZsh{}\PYZsh{} and other ones that don\PYZsq{}t mathc anything close are removed}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{match\PYZus{}peaks\PYZus{}one\PYZus{}to\PYZus{}one}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{tol}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{:}
+    \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+    \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} choose which to iterate over (the longer)}
+    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{:}
+        \PY{n}{longer}\PY{p}{,} \PY{n}{shorter} \PY{o}{=} \PY{n}{a}\PY{p}{,} \PY{n}{b}
+        \PY{n}{longer\PYZus{}is\PYZus{}a} \PY{o}{=} \PY{k+kc}{True}
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{longer}\PY{p}{,} \PY{n}{shorter} \PY{o}{=} \PY{n}{b}\PY{p}{,} \PY{n}{a}
+        \PY{n}{longer\PYZus{}is\PYZus{}a} \PY{o}{=} \PY{k+kc}{False}
+
+    \PY{n}{used} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{shorter}\PY{p}{)}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{bool}\PY{p}{)}
+    \PY{n}{L\PYZus{}keep} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{S\PYZus{}keep} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+    \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{longer}\PY{p}{:}
+        \PY{n}{d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{shorter} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{)}
+        \PY{n}{d}\PY{p}{[}\PY{n}{used}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{inf}
+        \PY{n}{j} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+        \PY{k}{if} \PY{n}{d}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{tol}\PY{p}{:}
+            \PY{n}{L\PYZus{}keep}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+            \PY{n}{S\PYZus{}keep}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{shorter}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+            \PY{n}{used}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{k+kc}{True}
+
+    \PY{n}{L\PYZus{}keep} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{L\PYZus{}keep}\PY{p}{)}
+    \PY{n}{S\PYZus{}keep} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{S\PYZus{}keep}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} return as (a\PYZus{}matched, b\PYZus{}matched)}
+    \PY{k}{if} \PY{n}{longer\PYZus{}is\PYZus{}a}\PY{p}{:}
+        \PY{k}{return} \PY{n}{L\PYZus{}keep}\PY{p}{,} \PY{n}{S\PYZus{}keep}
+    \PY{k}{else}\PY{p}{:}
+        \PY{k}{return} \PY{n}{S\PYZus{}keep}\PY{p}{,} \PY{n}{L\PYZus{}keep}
+\end{Verbatim}
+
+\end{document}

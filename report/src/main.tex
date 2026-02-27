@@ -1,0 +1,435 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{journal-template}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+
+%------- page header/footer formatting -----------
+%          Do not change
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+%------- Title page   -----------
+%        Modify as needed
+\title{Damped and Driven Torsional Oscillator}
+\author[1]{Bogdan-Vladimir Damian}
+\author[1]{Ari Polterovich}
+\author[1]{Justine Thebault-Weiser}
+\affil[1]{McGill University Physics Department, 3600 Rue University, H3A 2T8 Montréal, Canada}
+\date{January 21st 2026}                    
+\setcounter{Maxaffil}{0}
+\thispagestyle{empty}
+\renewcommand\Affilfont{\itshape\small}
+
+
+
+
+\begin{document}
+\maketitle %Automatically generated the title page
+
+
+%------- Abstract -----------
+%        Modify as needed
+\begin{abstract}
+
+\vspace{0.2cm}
+%{\it Maximum 250 words. Times New Roman 12 pt. font.}\\
+
+In this experiment, the steady-state response of a torsional oscillator subject to a sinusoidal driving torque was investigated, with particular focus on the dependence of oscillation amplitude and phase on the driving frequency. The intrinsic properties of the system, including the natural frequency and damping constant, were first determined from freely decaying oscillations. The oscillator was then driven at a constant torque amplitude while the driving frequency was swept across a range spanning the resonance. Undriven damped measurements yielded a natural angular frequency of $5.433 \pm 0.007$ rad/s and a damping constant of $0.240 \pm 0.001$ Hz. We measured the amplitude and phase response across a driving range of 0.50 to 1.20 Hz using two methods: time-domain curve fitting and frequency-domain Fourier analysis. The resulting amplitude–frequency and phase–frequency relations exhibited the characteristic features of a driven, damped oscillator: a pronounced resonance peak in amplitude near the natural frequency of $0.85 Hz$ and a smooth phase transition from near zero to near $\frac{3\pi}{2}$ through resonance. The two analysis methods produced consistent mean values, with the time-domain approach yielding smaller statistical uncertainties and the FFT method offering greater computational efficiency. 
+
+% In scientific journals, the Abstract is meant to tell a potential reader whether or not the article contains information worth reading in full. Therefore, the Abstract presents a comprehensive factual summary using a minimum number of words. This summary should include a short (i.e. 1 - 2 sentences!) description of: 
+%\item	what was done, 
+%\item	how it was done (experimental technique used with the relevant experimental conditions), 
+%\item	what were the final results (including the error estimate),
+%\item	what are the main conclusions (e.g., if the results are
+%consistent with a particular model, literature data, etc.). 
+%\end{enumerate}
+%It should be kept in mind that since the Abstract is read together with the title of the report any information given in the title need not be repeated in the Abstract.
+
+  
+\end{abstract}
+
+%--------------------------------------------------------
+
+\newpage %don't change, because abstract and title page don't count to page limit
+%thanks for that i didn't catch that at first
+
+\setcounter{page}{1}
+
+\section{Introduction}
+%{\it Maximum 500 words. Times New Roman 12 pt. font.}\\
+
+Harmonic oscillators appear everywhere in the physical world, from mechanical systems such as springs and pendulums to complex electrical circuits. In theory, oscillators continue their motion indefinitely. Real systems, however, lose energy through dissipative processes such as friction, air drag, or in the case of this experiment, eddy-current damping. When a periodic external torque is applied to compensate for these losses, the system becomes a driven, damped oscillator whose steady-state response depends on the driving frequency. Two features characterize this response: a frequency-dependent amplitude that should peak at resonance, and a phase shift between the drive and the motion that changes from $0$ to $\pi$ as the system is swept through resonance.
+
+The motion of a torsional oscillator is governed by the angular version of Hooke's Law. If there is no friction or driving force, the torque $\tau$ is proportional to the angle $\theta$:
+\begin{equation}
+\tau = I\ddot{\theta} = -\kappa\theta \text{\cite{LabManual1}}
+\end{equation}
+where $I$ is the moment of inertia and $\kappa$ is the torsional spring constant.
+
+In a real experiment, friction removes energy from the system. In this setup, eddy-current braking causes damping, which creates a resistance proportional to the angular velocity $\dot{\theta}$. Adding to this a sinusoidal external torque $\tau_{\text{ext}}(t)=\tau_0\cos(\omega t)$ \cite{LabManual1}, where $\tau_0$ is the amplitude of the drive and $\omega$ is the driving frequency, leads to the full equation of motion
+\begin{equation}
+I\ddot{\theta} + b\dot{\theta} + \kappa \theta = \tau_0 \cos(\omega t),
+\label{equation_of_motion}
+\end{equation}
+where $b$ is the damping coefficient. 
+
+The solution to \ref{equation_of_motion} describes how the angle $\theta$ changes with time. After a short period, the initial transient behavior dies out, and the system settles into a steady state. In this steady state, the oscillator moves at the same frequency as the drive:
+\begin{equation}
+\theta(t)=A(\omega)\cos(\omega t-\delta(\omega)), \text{\cite{LabManual1}}
+\end{equation}
+\begin{flalign}
+\text{with amplitude}\hspace{100pt}
+A(\omega)=\frac{\tau_0/I}{\sqrt{(\omega_0^2-\omega^2)^2+4\beta^2\omega^2}} \text{\cite{LabManual1}}&&
+\label{amplitude_equation}
+\end{flalign}
+\begin{flalign}
+\text{and phase shift}\hspace{100pt}
+\tan\delta(\omega)=\frac{2\beta\omega}{\omega_0^2-\omega^2}, \text{\cite{LabManual1}}&&
+\label{phase_shift}
+\end{flalign}
+where $\omega_0=\sqrt{\kappa/I}$ is the natural angular frequency and $\beta=b/(2I)$ is the decay constant. These relations predict a resonance peak in $A(\omega)$ near $\omega_0$ and a rapid change in $\delta(\omega)$ through $\pi/2$ at resonance.
+
+
+The task of this experiment is to investigate the behavior of a torsional oscillator driven by a sinusoidal torque. Specifically, the final goal is to measure how its steady-state amplitude and phase depend on the driving frequency. Through this process, a comparison will also be made between the time-domain curve fitting and frequency-domain Fourier (FFT) methods. Indeed, these techniques can offer complementary advantages when extracting the desired values from the experimental data.
+
+The need for this work arises from the fact that driven oscillators provide a model for how physical systems respond to periodic forces over time. For example, these concepts can be applied to car suspensions or bridges under periodic loads. Hence, the experimental verification of the oscillator's amplitude and phase response is important beyond the field of physics.
+
+This report is organized as follows. First, the experimental setup and measurement procedures are described. Then, the results of experimental data processing, and the resulting amplitude and phase relations, are  presented. Finally, an analysis of the results and limitations of the method are discussed. 
+
+%-------------------------------------------------------------
+\section{Methods}
+%{\it Maximum 500 words. Maximum 2 Figures. Times New Roman 12 pt. font.}\\
+\begin{wrapfigure}{r}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.45\textwidth]{use/Screenshot 2026-02-10 212725.png}
+    \caption{Image of the Experimental Setup with Labeled Components \cite{LabManual1}}
+    \label{fig:wrap}
+\end{wrapfigure}
+%\vspace{-10pt}
+
+The experimental setup consisted of a torsional oscillator connected to a MOKU GO interface for data acquisition. The torsional oscillator was made of a copper rotor disk attached to an aluminum shaft and suspended by a thin metal fiber. The fiber provides a restoring torque proportional to the angular displacement $\theta$, while eddy currents in the copper disk introduce a damping torque proportional to the angular velocity. An angular transducer mounted to the shaft produced a voltage signal $V_\theta(t)$ proportional to $\theta(t)$, and Helmholtz coils surrounding the rotor generated a magnetic field when driven by a function generator. A permanent magnet embedded in the rotor experienced a torque $\tau(t)\propto i(t)$, where $i(t)=i_0\cos(\omega t)$ is the sinusoidal current supplied by the generator. For small angular displacements, $\cos\theta\approx 1$, so the applied torque is directly proportional to the drive current amplitude and frequency.
+
+The first part of this experiment characterized the behavior of the oscillator without an external drive. A single run with the rotor at rest was recorded to determine the mean voltage offset of the angular transducer. The rotor was then displaced from equilibrium and released, producing freely decaying oscillations. Five such runs were collected. From each decay curve, the damped angular frequency and decay constant were extracted by fitting them with a decaying cosine function. The natural frequency $\omega_0$ was obtained from the damped frequency using the standard relation for a lightly damped oscillator. Because the period of a linear oscillator is independent of amplitude, even in the presence of weak damping, the size of the initial displacement does not affect the measured frequency \cite{gale}. Averaging over multiple runs reduced statistical uncertainty in $\omega_0$, the damping constant $\beta$, and the mean voltage offset.
+
+In the second part of the experiment, the system was driven with a sinusoidal torque of fixed amplitude while the driving frequency was varied. The drive amplitude (and therefore $\tau_0$) was kept constant throughout the experiment; only the frequency $\omega$ was changed. Three frequency sweeps were performed: a broad sweep from $0.50$ to $1.20$~Hz in $50$~mHz steps to locate the resonance, a finer sweep around the resonance in $10$~mHz steps to resolve the peak and phase transition, and a very fine sweep in $1$~mHz steps. The last dataset did not reveal additional physical structure beyond the $10$~mHz sweep and was therefore excluded from the final analysis.
+
+For each driving frequency, the system was allowed to evolve for times $t\gg 1/\beta$ before recording data, ensuring that transient behavior had decayed and the oscillator was in steady state. Data was collected using a MOKU GO interface and stored as time series of both the driving signal and the transducer voltage.
+
+No absolute calibration of voltage to angle or current to torque was required. The system is linear, so $V_\theta(t)=c_1\theta(t)+c_0$ and $\tau(t)\propto i(t)$ introduce only constant proportionality factors. Because the analysis concerns relative changes of amplitude and phase with frequency (rather than absolute values of $\theta$ or $\tau$) these constants do not affect the shapes of the resonance curves or the extracted phase relations. The same reasoning applies to both time-domain fitting and Fourier analysis.
+
+Two independent methods were used to extract amplitude and phase. In the time domain, each steady-state voltage trace was fitted to
+\begin{equation}
+V_\theta(t)=\bar V + A\cos(\omega t-\delta),
+\label{time_domain_equation}
+\end{equation}
+yielding the mean amplitude $A$ and phase shift $\delta$ relative to the driving signal. The standard error of the mean (SEM) for these values to determine the measurement uncertainties for $A$ and $\delta$. In the frequency domain, a Fast Fourier Transform (FFT) was applied to each dataset. The magnitude and phase of the Fourier component at the driving frequency were taken as the amplitude and phase response. The spectral resolution of the FFT set the uncertainty scale for these quantities \cite{textbook1}. The results from both methods were compared by constructing graphs of amplitude versus frequency, phase versus frequency, and amplitude versus phase difference.
+
+%\subsection{COMMENTS}
+
+%VLAD COMMENTS: 
+%"OKAY so here is what happened: 
+%we first collected simply damped, NOT DRIVEN motion for 5 runs and 1 run of plain stuff to get voltage offset, to extract fundamental quantities of the oscillator. (natural freq, beta decay cosntant and mean offset voltage) u can gget the natural frequency of oscillator from table 1, there it is given as natural angular frequency, but you know how to convert. that was phase I of the investigation from lab manual. cite \cite{gale} as i looked into textbook for the natural frequency thing. mention displaement from equi doesn't affect period, even in damped  
+
+%now for PHase II and III (very similar)
+
+%JUSTIFY THAT WE DON'T need to calibrate the angle as function of voltage or other way around, first becasue repsonse is linear, there is just a constant of proportionality, so basically won't affect significance with reapect to other peaks and driving freq. like won't influence fourier transform or time domain investigation, because we are doing a realtive comparison between the IV and DV, not to actually solve for a physical quantity. SAME LOGIC APPLIES FOR THE TORQUE CALIBRATION. this was literally kept constant throgh the experiment, the $\tau_0$ (that was the peak to peak voltage on function generator) that was applied. what was varied was freq at which it was applied. 
+
+%now the actual analysis part: 
+
+%End goals: 
+%{Using time domain analysis}
+%Graph of Amplitude signal as a function of driving frequency. 
+%Graph of phase difference between the oscillator motion and the driving torque signal. 
+%Graph of amplitude signal as a function of the phase difference between the oscillator and the driving torque applied
+%{Using fourier analysis/FFT}
+%Here is my reasoning to solve this whole lab: 
+
+%for every file, extract the mean amplitude of oscillation. the oscillator is already in steady state, as we waited that part out in the lab. the driving frequency can be found either by you looking at the driving torque signals or you looking at name of the file, which should include that information. so, for every file, you built the amplitude as a function of driving frequency graph, point by point. then, from that same file, you are able to find the mean phase difference between driving wave applying torque and the oscillator response motion (they have the same frequency of oscillations, that of drive, but are out of phase). so then again, you can start plotting, point by point, file per file, the graph of the phase difference as a function of driving frequency. and by that matter, you can also plot, point by point, (one point per file) the function of oscillator amplitude as a function of phase difference. 
+
+%{Fourier stuff}
+%you are to build those same graphs, but using FFT stuff. 
+
+%Uncertainty wise, the SEM should be reported in the error bars of every meaned quantity. i know that for fft, that is handled differently, so handle it accordingly. (figure out how that shit is reported, i think it has something to do with bin fitting/padding, doesn't matter)
+
+%IF U HAVE ANY QUESTIONS TEXT ME LIKE DEADASS I KNOW THIS IS COMPLICATED
+
+%WHAT ACTUALLY HAPPENDED
+
+
+%remember how we took three main batches, super broad, (increments of 50 mHz) , then more zoomed in on resonance (10 mHz increments), then super zoomed in (1mHz increments) well that last one was useless, no significant physical inferences were extracted. justify that we only needed two batch cause we thought it was going to be enough OR mention that 3 were collected but nothing significant ever came out of that shit. like deadass. 
+
+%the only graphs i reported are the ones down below. they are more than enough
+
+%DON'T FORGET TO REFERENCE STUFF FOR EQUATIONS (LAB MANUAL) AND ERRORS PROPS (TEXTBOOKE) WHEN APPLICABLE
+
+%-------------------------------------------------------------
+\section{Results}
+%{\it Maximum 500 words.  Use the \underline{minimum number} of Figures and Tables necessary to fully present your results. Times New Roman 12 pt. font.}\\
+% TIME-DOMAIN TABLE (sine fit)
+
+The intrinsic properties of the oscillator were first extracted from the un-driven decay measurements. The damped angular frequency, natural angular frequency, decay constant $\beta$, and mean voltage offset are summarized in Table~1. These quantities define the expected resonance frequency $\omega_{\text{res}}\approx\sqrt{\omega_0^2-\beta^2}$ and the width of the resonance peak. The small uncertainties indicate that repeated decay runs produced consistent estimates.
+
+From the driven frequency sweeps, the resonance was observed experimentally at a driving frequency of approximately $f = 0.85~\text{Hz}$, where the response amplitude reached its maximum value.
+
+\begin{table}[H]
+\centering
+\caption{Damped Oscillator Intrinsic Quantities from First Experiment}
+\label{tab: resdamped}
+\begin{tabular}{|c | c | c | c|}
+\hline
+Damped $\omega$ (rad/s) & Natural $\omega$ (rad/s) & $\beta$ Decay constant (Hz) & Mean voltage signal offset (V) \\
+\hline
+5.428 $\pm$ 0.007 & 5.433 $\pm$ 0.007  & -0.240 $\pm$ 0.001 & 1.41043 $\pm$ 0.00001\\
+\hline
+\end{tabular}
+\end{table}
+
+For the driven measurements, each data file corresponds to a single driving frequency $\omega=2\pi f$. In the time-domain analysis, the transducer voltage in steady state was fitted following the method outlined previously, using Equation \ref{time_domain_equation} with $\omega$ fixed by the function generator. The fit returned $A$ and $\delta$ for each frequency. The mean amplitude was taken as the coefficient of the cosine term, and the phase difference was defined as the lag of the oscillator response relative to the drive. The uncertainty in $A$ and $\delta$ was estimated using the SEM over the long steady-state time series \cite{textbook1}. These values are reported in Table~2(a).
+
+\begin{table}[H]
+\centering
+\caption{Steady-state response amplitude and phase difference against driving frequency (time-domain vs FFT). Very broad driving frequency sweep}
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\caption{Time-domain analysis}
+\label{tab:td_results}
+\begin{tabular}{| c | c | c | }
+\hline
+$f$ (Hz) & $A$ (V) & $\delta$ (rad) \\
+\hline
+0.50 & 0.01207 $\pm$ 0.00006 & 6.167 $\pm$ 0.006 \\
+0.55 & 0.01473 $\pm$ 0.00008 & 6.132 $\pm$ 0.004 \\
+0.60 & 0.0162 $\pm$ 0.0002 & 6.106 $\pm$ 0.005 \\
+0.65 & 0.0196 $\pm$ 0.0001 & 6.0659 $\pm$ 0.0007 \\
+0.70 & 0.02517 $\pm$ 0.00005 & 6.009 $\pm$ 0.003 \\
+0.75 & 0.0336 $\pm$ 0.0002 & 5.912 $\pm$ 0.006 \\
+0.80 & 0.0526 $\pm$ 0.0008 & 5.703 $\pm$ 0.006 \\
+0.85 & 0.09166 $\pm$ 0.00005 & 5.029 $\pm$ 0.002 \\
+0.90 & 0.0704 $\pm$ 0.0002 & 3.897 $\pm$ 0.001 \\
+0.95 & 0.0374 $\pm$ 0.0002 & 3.478 $\pm$ 0.003 \\
+1.00 & 0.02519 $\pm$ 0.00005 & 3.330 $\pm$ 0.003 \\
+1.05 & 0.01692 $\pm$ 0.00008 & 3.255 $\pm$ 0.006 \\
+1.10 & 0.01459 $\pm$ 0.00003 & 3.212 $\pm$ 0.004 \\
+1.15 & 0.01089 $\pm$ 0.00007 & 3.178 $\pm$ 0.009 \\
+1.20 & 0.01012 $\pm$ 0.00005 & 3.146 $\pm$ 0.004 \\
+\hline
+\end{tabular}
+\end{subtable}\hfill
+\begin{subtable}[t]{0.48\textwidth}
+\centering
+\caption{FFT-based analysis}
+\label{tab:fft_results}
+\begin{tabular}{| c | c |}
+\hline
+$A$ (V) & $\delta$ (rad) \\
+\hline
+ 0.0120 $\pm$ 0.0004 & 6.168 $\pm$ 0.007 \\
+ 0.0144 $\pm$ 0.0003 & 6.130 $\pm$ 0.008 \\
+ 0.0159 $\pm$ 0.0003 & 6.10 $\pm$ 0.01 \\
+ 0.0196 $\pm$ 0.0001 & 6.0659 $\pm$ 0.0007 \\
+ 0.0254 $\pm$ 0.0003 & 6.013 $\pm$ 0.006 \\
+ 0.0337 $\pm$ 0.0004 & 5.919 $\pm$ 0.006 \\
+ 0.053 $\pm$ 0.002 & 5.71 $\pm$ 0.02 \\
+ 0.09102 $\pm$ 0.00007 & 5.0445 $\pm$ 0.003 \\
+ 0.070 $\pm$ 0.001 & 3.90 $\pm$ 0.02 \\
+ 0.0365 $\pm$ 0.0004 & 3.48 $\pm$ 0.01 \\
+ 0.0249 $\pm$ 0.0003 & 3.331 $\pm$ 0.007 \\
+ 0.0166 $\pm$ 0.0002 & 3.256 $\pm$ 0.006 \\
+ 0.0143 $\pm$ 0.0002 & 3.211 $\pm$ 0.004 \\
+ 0.0108 $\pm$ 0.0002 & 3.175 $\pm$ 0.008 \\
+ 0.0101 $\pm$ 0.0001 & 3.146 $\pm$ 0.004 \\
+\hline
+\end{tabular}
+\end{subtable}
+\label{tab:td_vs_fft}
+\end{table}
+
+In the frequency-domain analysis, the FFT of each steady-state trace was computed. The Fourier spectrum $V_\theta(\omega')$ exhibits a sharp peak at the driving frequency $\omega'=\omega$. The amplitude of this peak gives the magnitude of the response, while its argument gives the phase. The phase of the drive signal at the same frequency was subtracted to obtain the phase difference $\delta(\omega)$. The finite frequency resolution $\Delta f=1/T$, where $T$ is the recording duration, sets the uncertainty in the FFT-based amplitude and phase. These results are listed in Table~2(b).
+
+Using both methods, three types of plots were constructed. First, the response amplitude $A(\omega)$ was plotted as a function of the driving frequency. The curve rises from small values at low frequency, reaches a clear maximum near resonance at $f \approx 0.85~\text{Hz}$, and then decreases at higher frequencies. This behavior matches the theoretical form of Equation \ref{amplitude_equation}, which predicts a peak centered near $\omega_0$.
+
+
+\begin{figure}[H]
+\caption{Steady-state response amplitude as a function of driving frequency: time-domain (a) vs. Fourier (b) methods. Data from the broad sweep.}
+
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{use/td_broadAvsdr.png}
+  \subcaption{Time-domain sine fit}
+  \label{fig:amp_td}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{use/fft_broadAvsdr.png}
+  \subcaption{Fourier projection at $f$}
+  \label{fig:amp_fft}
+\end{minipage}
+\label{fig:amp_compare}
+\end{figure}
+
+Second, the phase difference $\delta(\omega)$ was plotted versus frequency. The theoretical driven-oscillator phase lag increases from $0$ to $\pi$, with $\delta \approx \pi/2$ at resonance for the convention $\theta(t)=A\cos(\omega t-\delta)$. In this analysis, however, the phase difference was computed as $\delta = (\phi_{\text{resp}} - \phi_{\text{drive}}) \bmod 2\pi$ and reported in the interval $\delta \in [0,2\pi)$. With this choice, the resonance point appears at $\delta = 3\pi/2$, because $-\pi/2 \equiv 3\pi/2 \pmod{2\pi}$. Low-frequency values near $2\pi$ therefore correspond to phase differences close to zero (slightly negative) after wrapping. This explains why the phase shift at resonance is observed near $3\pi/2$ rather than $\pi/2$ in the plotted data. Hence, this behavior still follows the prediction of Equation \ref{phase_shift}.
+
+\begin{figure}[t]
+\caption{Phase difference $\delta$ as a function of driving frequency: time-domain (a) vs. Fourier (b) methods. Data from the broad sweep. }
+
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{use/fft_broadAvsphi.png}
+  \subcaption{Fourier projection at $f$}
+  \label{fig:phase_fft}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{use/td_broadAvsphi.png}
+  \subcaption{Time-domain sine fit}
+  \label{fig:phase_td}
+\end{minipage}
+\label{fig:phase_compare}
+\end{figure}
+\begin{figure}[h]
+\caption{Phase difference as a function of driving frequency (zoomed in near peak, data from shorter sweep): time-domain (a) vs. Fourier (b) methods.}
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{use/td_zoom_phivsdrv.png}
+  \subcaption{Time-domain sine fit}
+  \label{fig:phi_vs_f_td}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  % If your filename actually has a space (like "fft_zoom_phivsdr.png"),
+  % rename it to remove the space, e.g. "fft_zoom_phivsdr.png".
+  \includegraphics[width=\linewidth]{use/fft_zoom_phivsdr.png}
+  \subcaption{Fourier projection at $f$}
+  \label{fig:phi_vs_f_fft}
+\end{minipage}
+\label{fig:phi_vs_f_compare_zoom}
+\end{figure}
+
+Third, the amplitude was plotted as a function of the phase difference, producing a parametric representation of the resonance. Near resonance, large changes in amplitude correspond to small changes in phase, while far from resonance, the amplitude is small and the phase behaves asymptotically.
+
+\begin{figure}[H]
+\caption{Response amplitude as a function of phase difference (zoomed in near peak, data from shorter sweep): time-domain (a) vs. Fourier (b) methods.}
+
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{use/td_zoom_ampvsphi.png}
+  \subcaption{Time-domain sine fit}
+  \label{fig:amp_vs_phi_td}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{use/fft_zoom_ampvsphi.png}
+  \subcaption{Fourier projection at $f$}
+  \label{fig:amp_vs_phi_fft}
+\end{minipage}
+\label{fig:amp_vs_phi_compare_zoom}
+\end{figure}
+
+\vspace{-14pt}
+The time-domain and FFT-based datasets agree closely, both in their shapes and in the locations of the resonance features. Small differences appear in the uncertainties: the FFT method yields slightly larger error bars due to finite spectral resolution and windowing effects, while the time-domain fits benefit from long, highly averaged steady-state records. However, the time-domain method required significantly more time.
+
+%-------------------------------------------------------------
+\section{Discussion}
+The experimental graphs display the classic signatures of a driven, damped harmonic oscillator. The amplitude versus frequency curves from both analysis methods show a single, well-defined resonance peak, symmetric about its maximum within the experimental resolution. The peak location is consistent with the natural frequency obtained from the un-driven decay, confirming the internal consistency of the measurements. The width of the measured peak is in good qualitative agreement with the decay rate $\beta$ extracted in Table \ref{tab: resdamped}.
+
+The phase versus frequency plots show the expected smooth transition from near $0$ to near $\pi$. The steepest slope occurs near resonance, where small changes in frequency produce large changes in phase. This behavior reflects the fact that a frequency-dependent amplitude response must be accompanied by a corresponding phase shift. The data closely follow the theoretical prediction, with the midpoint of the transition near $\delta=\pi/2$ occurring close to the resonance frequency.
+
+In this analysis, the resonance phase appears near $\delta = 3\pi/2$ rather than $\pi/2$ because the phase difference was computed as $\delta = (\phi_{\text{resp}} - \phi_{\text{drive}})\bmod 2\pi$ and reported in the interval $[0,2\pi)$. With this convention, the theoretical value $\delta \approx -\pi/2$ at resonance is equivalent to $3\pi/2$ modulo $2\pi$. Low-frequency values near $2\pi$ therefore correspond to phase differences close to zero after wrapping, explaining the observed phase offset in the plots.
+
+The residuals from the time-domain fits are small and structureless, indicating that a simple cosine model accurately describes the steady-state motion. This is mainly because data was taken after waiting well beyond $t\gg 1/\beta$, so transient components had decayed. Long, steady-state records reduce random noise and make the SEM of the fitted parameters very small.
+
+The FFT method yields slightly larger uncertainties due to the finite time window. The frequency resolution $\Delta f=1/T$ limits how precisely the Fourier peak can be isolated, and finite-time sampling spreads spectral power over nearby frequencies. Zero-padding improves visual smoothness but does not increase true resolution. As a result, FFT-based amplitudes and phases carry systematic uncertainty from spectral leakage.
+
+In terms of efficiency, the FFT approach is faster and more direct: once the transform is applied, amplitude and phase at the driving frequency are obtained immediately. The time-domain method requires more procedural steps but benefits from strong noise averaging. The two approaches are therefore complementary.
+
+Several improvements could reduce uncertainty and extend the experiment. Calibrating voltage to angle and current to torque would allow extraction of physical constants such as $\kappa$ and $I$. Increasing the record length would improve FFT resolution. Varying the damping would show how the resonance width and phase transition depend on $\beta$.
+
+
+%\subsection{COMMENTS}
+%VLAD COMMENTS: 
+%"
+%just talk about how beautiful ts is. nothing really to talk about residuals or uncertainties, as to be honest we werent interested in chi2 or any params of the curve fitting, they turned out to be super small error bars (can't see em on graph but they are present in desription table) becasue we had so much consistent and looooong data sem for every peak and curve fitting really averaged out. THIS WAS ALSO BEcUASE WE WAITED WELL PAST 1/$\beta$ <<t to record data so the big bad mean transient state would leave and we were left with nice cute and pretty steady state. 
+
+%conclusion for campirson between time domain and fft is that the uncs on fft were a little bigger, you guys fiure out why, but it was also a lot faster and more efficient to do fft rather than time domain analysis, cause you didn't have to extract shit you would just toss in the data and get back what you want, vs time domain a lot more procedures involved"
+
+
+%I uploaded code and logbook. FOR CODE wait to see what others say in physics group chat, as literally 3/4 is ai genrated we know why. 
+
+%IF U GOT QUESTIONS TEXT, I UNDERSTAND TS AIN'T FOR THE WEAK
+
+
+%\#\# VLAD OUT
+
+
+%{\it Maximum 500 words.  Use the \underline{minimum number} of Figures and Tables necessary to fully discuss your results. Times New Roman 12 pt. font.}\\
+
+%The Discussion evaluates whether or not the experiment objectives have been met (i.e. was the experiment a success) and what the results  actually mean. This portion of the report allows some freedom, but the purpose is to explain the significance/meaning of the results to the reader; i.e. to ``interpret'' the results.
+
+%In the discussion section, important features of the results should be highlighted. Comparison should be made with accepted values if relevant and available.  This comparison gives an estimate of the accuracy of the experiment and provides an opportunity to assess different methods (i.e. those you used and those others have used) and to comment on your error analysis. {\bf Do the results obtained in this experiment agree - within quoted uncertainty - of accepted values? If there is a discrepancy, by how many standard deviations?  Why?}
+
+%What (if any) is the theoretical significance of the results? The Discussion should include a clear, concise presentation of how the results demonstrate key concepts or impact on questions of theoretical importance.
+
+%{\bf Any direct questions asked of you in the lab manual should also be addressed in this section.}
+
+
+%-------------------------------------------------------------
+\section{Conclusions} %maximum 300 words
+%{\it Maximum 300 words. Times New Roman 12 pt. font.}\\
+
+This experiment investigated the steady-state response of a driven, damped torsional oscillator. The properties of the system by itself were first characterized using un-driven decay measurements to obtain the natural frequency, damping constant, and voltage offset. The oscillator was then driven at various frequencies with a constant-amplitude torque, and its amplitude and phase response were measured using both time-domain curve fitting and frequency-domain Fourier analysis.
+
+The amplitude versus frequency data exhibited a clear resonance peak near the natural frequency, while the phase shifted smoothly from near $0$ to near $\pi$ as the driving frequency increased. These trends matched the theoretical predictions for a driven harmonic oscillator. In particular, the resonance occurred at $f \approx 0.85~\text{Hz}$ and the phase shift appeared near $\delta = 3\pi/2$ due to the modulo-$2\pi$ phase convention used in the analysis. The time-domain and FFT-based methods produced consistent results, with the time-domain fits yielding smaller statistical uncertainties due to long steady-state averaging.
+
+The agreement between the experimental results and theoretical predictions confirms the validity of the linear oscillator model for this system. Both analysis techniques successfully found the same resonance and amplitude/phase effects. The FFT method was faster and more direct, while the time-domain method offered higher precision.
+
+Future work could include absolute calibration of angle and torque to extract physical constants, systematic studies of how changing damping alters the resonance width, and exploration of non-linear behavior at larger amplitudes, where the small-angle approximation fails. Extending the analysis to other driven systems, such as electrical or optical oscillators, would demonstrate the applicability of the concepts tested in this experiment to other contexts.
+
+
+
+% In the Conclusion section, state the most important outcome of your work. Do not simply summarize the points already made in the body, instead, interpret your findings at a higher level of abstraction. Show whether, or to what extent, you have succeeded in addressing the need stated in the Introduction. At the same time, do not focus on yourself (for example, by restating everything you did). Rather, show what your findings mean to readers. Make the Conclusion interesting and memorable for them.
+
+% At the end of your Conclusion, consider including perspectives, that is, an idea of what could or should still be done in relation to the issue addressed in the paper. If you include perspectives, clarify whether you are referring to firm plans for yourself and your colleagues (``In the coming months, we will . . . ``) or to an invitation to readers (``One remaining question is . . . ``).
+
+\newpage
+
+%-------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{unsrt}
+\bibliography{MyBibliography}
+
+
+
+
+%-------------------------------------------------------------
+\section*{Author Contributions Statement}
+B.V.D and J.T.W. performed data collection. B.V.D. performed data analysis in Python. A.P. wrote the Abstract, Introduction, and Methods sections. J.T.W. wrote the Results, Discussion, and Conclusion sections. J.T.W. and B.V.D. reviewed the final manuscript. 
+
+
+
+%-------------------------------------------------------------
+\newpage
+\appendix
+\renewcommand{\thesection}{Appendix \Alph{section}. }
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}. }
+
+
+
+\end{document}
+
