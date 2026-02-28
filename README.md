@@ -4,8 +4,8 @@ This repository contains raw data, analysis code (Python + Jupyter), a lab logbo
 
 ## Structure
 - `data/raw/` — raw measurement files (not modified)
-- `src/` — reusable analysis code (labtools module)
-- `notebooks/` — exploration + analysis notebooks
+- `src/` — reusable analysis code (labtools helper module)
+- `notebooks/` — exploration + data analysis jupyter notebooks
 - `results/figures/` — generated plots
 - `results/tables/` — extracted tables / summaries
 - `report/` — compiled report PDF + LaTeX source in `report/src/`
