@@ -2,6 +2,9 @@
 
 This repository contains raw data, analysis code (Python + Jupyter), a lab logbook (PDF), the LaTeX report source, the compiled report PDF, and generated figures for a damped and driven torsional oscillator lab.
 
+The goal was to explore and analyze the response behaviour of a damped torsional oscillator when subject to and external sinusoidal driving torque. The relationships of how driving frequency and phase difference between drive and response affected the oscillator amplitude were explored.
+The techniques used were time domain analysis for various driving frequencies and Fast Fourier Transforms.  
+
 ## Structure
 - `data/raw/` — raw measurement files (not modified)
 - `src/` — reusable analysis code (labtools helper module)
