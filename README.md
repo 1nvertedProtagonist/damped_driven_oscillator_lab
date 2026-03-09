@@ -18,7 +18,7 @@ The techniques used were time domain analysis for various driving frequencies an
 2. Run the analysis notebook(s) in `notebooks/` (and/or scripts in `scripts/`) to regenerate figures and tables.
 
 ## Note on AI assistance
-Portions of the code were written with AI assistance for scaffolding and refactoring; all outputs were reviewed, tested, and adapted as needed by me.
+Portions of the code were written with AI assistance for scaffolding and refactoring. AI assistance was also called upon to accelerate the processes of debugging, documentation consultation and brainstorming. All AI outputs were reviewed, tested, and adapted as needed by me.
 
 ## Authors
 Justine Thebault-Weiser, Ari Polterovich and Bogdan-Vladimir Damian (Me) 
