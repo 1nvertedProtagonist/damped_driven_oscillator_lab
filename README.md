@@ -19,3 +19,6 @@ The techniques used were time domain analysis for various driving frequencies an
 
 ## Note on AI assistance
 Portions of the code were written with AI assistance for scaffolding and refactoring; all outputs were reviewed, tested, and adapted as needed by me.
+
+## Authors
+Justine Thebault-Weiser, Ari Polterovich and Bogdan-Vladimir Damian (Me) 
